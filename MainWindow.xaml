@@ -1,0 +1,195 @@
+﻿<Window x:Class="AENC.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:avalon="http://icsharpcode.net/sharpdevelop/avalonedit"
+        xmlns:local="clr-namespace:AENC"
+        mc:Ignorable="d"
+        Title="Teste e Validação de Sistemas de Informação"  
+        Height="598" Width="899.435"
+        MinHeight="436" MinWidth="579" Background="White">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="719*"/>
+            <ColumnDefinition Width="749*"/>
+            <ColumnDefinition Width="161*"/>
+            <ColumnDefinition Width="114*"/>
+        </Grid.ColumnDefinitions>
+        <TabControl x:Name="Tabcontrol" Grid.ColumnSpan="4" Background="White" SelectionChanged="Tabcontrol_SelectionChanged">
+            <TabItem Header="Metrics">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="143*"/>
+                        <ColumnDefinition Width="159*"/>
+                        <ColumnDefinition Width="165*"/>
+                        <ColumnDefinition Width="157*"/>
+                        <ColumnDefinition Width="158*"/>
+                        <ColumnDefinition Width="0*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label x:Name="labelAppName" Content="Static Analysis of Coding Standards" Margin="0,0,23,0" VerticalAlignment="Top" FontWeight="Bold" Height="49" Grid.Column="2" FontSize="22" RenderTransformOrigin="0.641,0.393" Grid.ColumnSpan="3" Background="White" FontStyle="Italic" Opacity="0.91" Foreground="#DD000000" HorizontalAlignment="Right" Width="477"/>
+                    <Border BorderBrush="Black" BorderThickness="1" Margin="5,36,0,0" Height="50" VerticalAlignment="Top" HorizontalAlignment="Left" Width="292" Grid.ColumnSpan="2"/>
+                    <Label x:Name="labelOverview" Content="Level Test Overview" HorizontalAlignment="Left" Margin="11,10,0,0" VerticalAlignment="Top" FontWeight="Bold" Height="26" Width="122"/>
+                    <Label x:Name="labelTestLevel" Content="Level Test :" HorizontalAlignment="Left" Margin="11,43,0,0" VerticalAlignment="Top" Height="26" Width="78"/>
+                    <ComboBox x:Name="combobox_lvl_test" DisplayMemberPath="MetricLvl" Margin="105,45,0,0" IsEditable="False" Grid.ColumnSpan="2" HorizontalAlignment="Left" Width="184" Height="28" VerticalAlignment="Top" SelectionChanged="combobox_lvl_test_SelectionChanged" />
+                    <Label x:Name="labelMetrics" Content="Metrics" HorizontalAlignment="Left" Margin="11,137,0,0" VerticalAlignment="Top" FontWeight="Bold" Height="26" Width="123"/>
+
+                    <DataGrid x:Name="dg_metrics" Background="LightGray" HorizontalAlignment="Stretch" Height="auto" Width="auto" Grid.ColumnSpan="5" Margin="0,168,0,0" AutoGenerateColumns="False" CanUserAddRows="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding MetricName}" IsReadOnly="True" Header="Metric Name"/>
+                            <DataGridTextColumn Binding="{Binding MetricDescription}" IsReadOnly="True" Header="Metric Description"/>
+                            <DataGridCheckBoxColumn Binding="{Binding IsSelected}" Header="Select" x:Name="Checkcolumn" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <CheckBox x:Name="checkboxAllMetrics" Content="Select All" Height="18" Margin="0,174,10,0" VerticalAlignment="Top" RenderTransformOrigin="1.136,1.167" Grid.Column="4" HorizontalAlignment="Right" Width="73"  Checked="CheckBox_Checked" Unchecked="Checkboxall_Unchecked" />
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="Code Analysis">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="50" />
+                        <ColumnDefinition MinWidth="50" Width="25*" />
+                        <ColumnDefinition MinWidth="50" Width="25*"/>
+                        <ColumnDefinition MinWidth="50" Width="25*"/>
+                        <ColumnDefinition MinWidth="50" Width="25*"/>
+                        <ColumnDefinition MinWidth="50" Width="25*"/>
+                        <ColumnDefinition MinWidth="50" Width="25*"/>
+                        <ColumnDefinition MinWidth="50" Width="25*"/>
+                        <ColumnDefinition MinWidth="50" Width="25*"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="21*" />
+                        <ColumnDefinition Width="50" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="20" />
+                        <RowDefinition Height="auto" MinHeight="30"/>
+                        <RowDefinition Height="auto" MinHeight="30"/>
+                        <RowDefinition Height="auto" MinHeight="30"/>
+                        <RowDefinition Height="auto" MinHeight="30"/>
+                        <RowDefinition Height="auto" MinHeight="30"/>
+                        <RowDefinition Height="auto" MinHeight="30"/>
+                        <RowDefinition Height="auto" MinHeight="30"/>
+                        <RowDefinition />
+                        <RowDefinition Height="20" />
+                    </Grid.RowDefinitions>
+                    <Label x:Name="labelAppName1" Content="Static Analysis of Coding Standards" Margin="0,0,22.627,0" VerticalAlignment="Top" FontWeight="Bold" Height="49" Grid.Column="4" FontSize="22" RenderTransformOrigin="0.641,0.393" Grid.ColumnSpan="8" Background="White" FontStyle="Italic" Opacity="0.91" Foreground="#DD000000" HorizontalAlignment="Right" Width="477" Grid.RowSpan="2"/>
+
+                    <Border BorderBrush="Black" BorderThickness="1" Margin="5,16,0,0" Height="81" VerticalAlignment="Top" HorizontalAlignment="Left" Width="212" Grid.ColumnSpan="3" Grid.Row="1" Grid.RowSpan="4"/>
+                    <Label x:Name="labelOverview2" Content="Code Analysis" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" FontWeight="Bold" Height="26" Width="122" Grid.ColumnSpan="2" Grid.RowSpan="2"/>
+                    <Label Grid.Row="1" Grid.ColumnSpan="2" Margin="11,21,39,9" Grid.RowSpan="2" >Test Level:</Label>
+
+
+                    <Label x:Name="lvl" Grid.Row="1" Grid.ColumnSpan="2" Margin="39,21,62,9" Grid.RowSpan="2" Grid.Column="1" ></Label>
+
+                    <!--Row 4-->
+                    <Label Grid.Row="3" Grid.ColumnSpan="2" Margin="11,0,39,0">Test Code:</Label>
+                    <Button x:Name="UploadFile" Grid.Row="2" Grid.Column="1" Background="MintCream" Foreground="Black" BorderBrush="White" Grid.ColumnSpan="2" MaxWidth="150" Click="UploadFile_Click" Height="Auto" Margin="39,29,0,1" HorizontalAlignment="Left" Width="108" Grid.RowSpan="2" >
+                        <Grid>
+                            <materialDesign:PackIcon Kind="File" Margin="-20,0,0,0" Foreground="Black" RenderTransformOrigin="2,0.479"></materialDesign:PackIcon>
+                            <AccessText TextDecorations="Underline" Text="Upload file" FontSize="11"/>
+                        </Grid>
+                    </Button>
+
+                    <Button x:Name="Printer" Grid.Row="7" Grid.Column="8" Background="White" Foreground="Black" BorderBrush="White" MaxWidth="150" Height="30" Margin="10,0,0,0" HorizontalAlignment="Left" Width="47" Grid.RowSpan="1" VerticalAlignment="Top" Click="Printer_Click" >
+                        <Grid>
+                            <materialDesign:PackIcon Kind="Printer" Margin="0,0,0,0" Foreground="Black" RenderTransformOrigin="2,0.479"></materialDesign:PackIcon>
+                        </Grid>
+                    </Button>
+
+
+                    <Button x:Name="btn_scancode" Grid.Row="6" Grid.Column="5" Grid.ColumnSpan="2" MaxWidth="150" FontSize="11" Background="Blue" Foreground="#FF527080" BorderBrush="#FF635C5C" Margin="10,23,10,5" Grid.RowSpan="2" Click="btn_scancode_Click" >
+                        <Grid>
+                            <materialDesign:PackIcon Kind="Cached" Margin="-10,0,0,0" Foreground="White" RenderTransformOrigin="2,0.479"></materialDesign:PackIcon>
+                            <AccessText TextDecorations="Underline" FontSize="11"/>
+                        </Grid>
+                    </Button>
+
+                    <avalon:TextEditor x:Name="OriginalCode" Background="LightGray" ShowLineNumbers="True" 
+                           Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="6" SyntaxHighlighting="C#" Grid.RowSpan="2"/>
+                    <!--<avalon:TextEditor x:Name="ScanDone" Background="LightGray" IsReadOnly="True" 
+                           Grid.Row="8" Grid.Column="6" Grid.ColumnSpan="6" Margin="0,0,-0.407,0" Grid.RowSpan="2">
+                    </avalon:TextEditor>-->
+
+
+
+                    <ListView Name="lvUsers" Grid.Row="8" Grid.Column="6" Background="LightGray" Grid.ColumnSpan="6" Margin="0,0,-0.407,0" Grid.RowSpan="2">
+                        <ListView.View>
+                            <GridView>
+                                <GridViewColumn Header="Class" Width="175" DisplayMemberBinding="{Binding CodeSmellClass}" />
+                                <GridViewColumn Header="Function" Width="175" DisplayMemberBinding="{Binding CodeSmellFunction}" />
+                            </GridView>
+                        </ListView.View>
+
+                        <ListView.GroupStyle>
+                            <GroupStyle>
+                                <GroupStyle.ContainerStyle>
+                                    <Style TargetType="{x:Type GroupItem}">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate>
+                                                    <Expander IsExpanded="True">
+                                                        <Expander.Header>
+                                                            <StackPanel Orientation="Horizontal">
+                                                                <TextBlock Text="{Binding Name}" FontWeight="Bold" Foreground="BlueViolet" FontSize="20" VerticalAlignment="Bottom" />
+                                                                <TextBlock Text="{Binding ItemCount}" FontSize="15" Foreground="Red" FontWeight="Bold" FontStyle="Italic" Margin="10,0,0,0" VerticalAlignment="Bottom" />
+                                                                <TextBlock Text=" item(s)" FontSize="15" Foreground="DarkRed" FontStyle="Italic" VerticalAlignment="Bottom" />
+                                                            </StackPanel>
+                                                        </Expander.Header>
+                                                        <ItemsPresenter />
+                                                    </Expander>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </GroupStyle.ContainerStyle>
+                            </GroupStyle>
+                        </ListView.GroupStyle>
+                    </ListView>
+
+
+                </Grid>
+            </TabItem>
+            <TabItem Header="About Static Analysis">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="178*"/>
+                        <ColumnDefinition Width="177*"/>
+                        <ColumnDefinition Width="70*"/>
+                        <ColumnDefinition Width="121*"/>
+                        <ColumnDefinition Width="339*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label x:Name="labelAppName2" Content="Static Analysis of Coding Standards" Margin="0,0,23,0" VerticalAlignment="Top" FontWeight="Bold" Height="49" Grid.Column="2" FontSize="22" RenderTransformOrigin="0.641,0.393" Grid.ColumnSpan="3" Background="White" FontStyle="Italic" Opacity="0.91" Foreground="#DD000000" HorizontalAlignment="Right" Width="477"/>
+
+                    <Label x:Name="label6" Content="Code Smell Details" HorizontalAlignment="Left" Margin="10,0,0,213" VerticalAlignment="Bottom" FontWeight="Bold" Height="26" Width="141"/>
+                    <Label x:Name="label7" Content="Metric :" HorizontalAlignment="Left" Margin="11,0,0,165" VerticalAlignment="Bottom" Height="26" Width="78"/>
+                    <ComboBox x:Name="combobox_txt_name" DisplayMemberPath="MetricName" Margin="105,0,0,161" IsEditable="False" Grid.ColumnSpan="2" HorizontalAlignment="Left" Width="184" Height="28" VerticalAlignment="Bottom" SelectionChanged="combobox_txt_name_SelectionChanged" />
+
+                    <Border BorderBrush="Black" BorderThickness="1" Margin="11,0,0,145" Height="68" VerticalAlignment="Bottom" HorizontalAlignment="Left" Width="292" Grid.ColumnSpan="2"/>
+                    <DataGrid x:Name="dg_sequences" HorizontalAlignment="Stretch" Height="141" Width="auto" Grid.ColumnSpan="5" AutoGenerateColumns="False" CanUserAddRows="False" VerticalAlignment="Bottom">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding SequenceGroup}" IsReadOnly="True" Header="Information About Code Smell"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <avalon:TextEditor x:Name="AboutMetrics" Background="LightGray" IsReadOnly="True" HorizontalAlignment="Stretch" Height="117" Width="auto" Grid.ColumnSpan="5" VerticalAlignment="Bottom"/>
+                    <Label x:Name="label6_Copy" Content="Value of Static Analysis" HorizontalAlignment="Left" Margin="25,54,0,409" FontWeight="Bold" Width="192" Grid.ColumnSpan="2"/>
+                    <Label x:Name="label6_Copy1" Content="Early detection of defects prior to test execution" HorizontalAlignment="Left" Margin="46,80,0,383" Width="272" Grid.ColumnSpan="2"/>
+                    <Label x:Name="label6_Copy2" HorizontalAlignment="Left" Margin="46,106,0,335" Width="369" Grid.ColumnSpan="3">
+                        <TextBlock>Early warning about suspicious aspects of the code or design<LineBreak/>
+                        by the calculation of metrics, such as a high complexity measure</TextBlock>
+                    </Label>
+                    <Label x:Name="label6_Copy3" Content="Identification of defects not easily found by dynamic testing" HorizontalAlignment="Left" Margin="46,154,0,309" Width="351" Grid.ColumnSpan="3"/>
+                    <Label x:Name="label6_Copy12" HorizontalAlignment="Left" Margin="46,180,0,309" Width="369" Grid.ColumnSpan="3">
+                        <TextBlock>Detecting dependencies and inconsistencies<LineBreak/>
+                        in software models such as links</TextBlock>
+                    </Label>
+                    <Label x:Name="label6_Copy4" HorizontalAlignment="Left" Margin="46,230,0,259" Width="369" Grid.ColumnSpan="3">
+                        <TextBlock Width="359"><Run Text="Improved maintainability of code and design"/><LineBreak/><Run Text="and prevention of defects, if lessons are learned in development"/></TextBlock>
+                    </Label>
+                    <Image Source="Images/1_5oTwbxMbwRolbyc2cmGyNA.png" Grid.Column="3" Margin="98,90,78,161" Grid.ColumnSpan="2"></Image>
+                </Grid>
+            </TabItem>
+        </TabControl>
+    </Grid>
+</Window>
